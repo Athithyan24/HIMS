@@ -1,0 +1,12 @@
+services:
+  mongo:
+    image: mongo:7
+    container_name: elara-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - elara_mongo:/data/db
+    restart: unless-stopped
+
+volumes:
+  elara_mongo:

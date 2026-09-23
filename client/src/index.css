@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #f8fafc;
+  --card: #ffffff;
+  --ink: #0f172a;
+  --mute: #64748b;
+  --line: #e8eef4;
+}
+
+.dark {
+  --bg: #0b1220;
+  --card: #121a2a;
+  --ink: #e8eef6;
+  --mute: #94a3b8;
+  --line: #1e2a3c;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+}
+
+.dark body {
+  background: #0b1220;
+}
+
+.surface {
+  background: var(--card);
+  box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+.dark .surface {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+}
+
+.hairline {
+  border: 1px solid var(--line);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 99px;
+}
+
+input,
+select,
+textarea {
+  @apply w-full rounded-[16px] border border-line bg-white px-3.5 py-2.5 text-[15px] outline-none transition;
+}
+input:focus,
+select:focus,
+textarea:focus {
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+  border-color: #2563eb;
+}
+
+.dark input,
+.dark select,
+.dark textarea {
+  background: #121a2a;
+  border-color: #1e2a3c;
+  color: #e8eef6;
+}
