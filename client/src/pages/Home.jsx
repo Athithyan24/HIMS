@@ -19,6 +19,7 @@ function AdminHome() {
   const k = useQuery({ queryKey: ["dash-admin"], queryFn: async () => (await api.get("/dash/admin")).data.kpis });
   const op = useQuery({ queryKey: ["op-an"], queryFn: async () => (await api.get("/op/analytics")).data });
   const act = useQuery({ queryKey: ["act"], queryFn: async () => (await api.get("/activity")).data.logs });
+  const patients = useQuery({ queryKey: ["patients", ""], queryFn: async () => (await api.get("/patients")).data.patients });
   if (k.isLoading) return <Skeleton className="h-64" />;
   const tiles = [
     ["Census", k.data.patients, "People with an open chart"],
@@ -65,6 +66,34 @@ function AdminHome() {
           </ul>
         </Card>
       </div>
+      <Card>
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <p className="text-xs uppercase tracking-wide text-mute">Latest charts</p>
+            <h2 className="mt-1 font-serif text-2xl">Patient records</h2>
+          </div>
+          <Link className="text-sm font-medium text-brand" to="/patients">View all patients</Link>
+        </div>
+        {patients.isError && <p role="alert" className="mt-4 text-sm text-rose-700">Patient records could not be loaded.</p>}
+        {patients.isLoading ? (
+          <Skeleton className="mt-4 h-20" />
+        ) : patients.data?.length ? (
+          <div className="mt-4 divide-y divide-line">
+            {patients.data.slice(0, 5).map((patient) => (
+              <Link key={patient._id} to={`/patients/${patient._id}`} className="flex items-center gap-3 py-3 first:pt-0 last:pb-0">
+                <img src={avatarUrl(patient.name)} className="h-10 w-10 rounded-full bg-brand-soft" alt="" />
+                <div className="min-w-0 flex-1">
+                  <p className="truncate text-sm font-medium">{patient.name}</p>
+                  <p className="text-xs text-mute">{patient.mrn} · {patient.phone || patient.email || "No contact details"}</p>
+                </div>
+                <span className="text-xs text-brand">Open chart</span>
+              </Link>
+            ))}
+          </div>
+        ) : !patients.isError ? (
+          <p className="mt-4 text-sm text-mute">No patient charts have been registered yet.</p>
+        ) : null}
+      </Card>
     </Page>
   );
 }

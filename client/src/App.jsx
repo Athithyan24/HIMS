@@ -13,6 +13,7 @@ import Pharmacy, { Inventory } from "./pages/Pharmacy";
 import Billing from "./pages/Billing";
 import OpPulse, { Departments } from "./pages/OpPulse";
 import Staff from "./pages/Staff";
+import Patients from "./pages/Patients";
 import { MyBills, MyRecords } from "./pages/PatientViews";
 import { Skeleton } from "./components/ui";
 
@@ -38,6 +39,7 @@ export default function App() {
               <Route path="/intake" element={<WalkInRegister />} />
               <Route path="/consult/:visitId" element={<Consult />} />
               <Route path="/patients/:id" element={<Ehr />} />
+              <Route path="/patients" element={<Patients />} />
               <Route path="/appointments" element={<Appointments />} />
               <Route path="/book" element={<Appointments />} />
               <Route path="/lab" element={<Lab />} />

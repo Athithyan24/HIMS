@@ -27,6 +27,7 @@ import { useEffect } from "react";
 const NAV = {
   admin: [
     { to: "/", icon: LayoutDashboard, label: "Campus" },
+    { to: "/patients", icon: FileHeart, label: "Patients" },
     { to: "/staff", icon: Users, label: "People" },
     { to: "/departments", icon: Building2, label: "Floors" },
     { to: "/op", icon: BarChart3, label: "OP pulse" },
@@ -91,7 +92,7 @@ export function Shell({ children }) {
       <aside className="fixed bottom-0 left-0 right-0 z-30 flex justify-around border-t border-line bg-white/90 px-2 py-2 backdrop-blur md:bottom-auto md:right-auto md:top-0 md:h-screen md:w-[88px] md:flex-col md:items-center md:gap-1 md:border-r md:border-t-0 md:py-5 lg:w-[220px] lg:items-stretch lg:px-3">
         <div className="mb-6 hidden px-2 lg:block">
           <p className="font-serif text-2xl leading-none">Elara</p>
-          <p className="mt-1 text-[11px] uppercase tracking-[0.18em] text-mute">Medical Centre</p>
+          <p className="mt-1 text-[11px] uppercase tracking-[0.18em] text-mute">Cloud-based HIMS</p>
         </div>
         {items.map((item) => (
           <NavLink
